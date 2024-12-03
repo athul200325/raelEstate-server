@@ -26,7 +26,7 @@ app.use(cors());
 // OR allow specific origins
 app.use(
   cors({
-    origin: 'https://real-estate-mngt-sys.vercel.app/', // Frontend's origin
+    origin: 'https://real-estate-mngt-sys.vercel.app', // Frontend's origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
     credentials: true, // Allow cookies if needed
   })
