@@ -24,14 +24,25 @@ const app = express()
 app.use(cors());
 
 // OR allow specific origins
-app.use(
-  cors({
-    origin: 'https://real-estate-mngt-sys.vercel.app', // Frontend's origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-    credentials: true, // Allow cookies if needed
-  })
-);
+const allowedOrigins = [
+    'https://real-estate-mngt-sys.vercel.app', // Production frontend
+    'http://localhost:5173', // Development frontend
+  ];
 
+app.use(
+    cors({
+      origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
+      methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+      credentials: true, // Allow cookies if needed
+    })
+  );
 app.use(express.json())
 
 app.listen(3000,()=>{
