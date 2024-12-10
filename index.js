@@ -26,7 +26,7 @@ app.use(cors());
 // OR allow specific origins
 const allowedOrigins = [
     'https://real-estate-mngt-sys.vercel.app', // Production frontend
-    'http://localhost:5173', // Development frontend
+    'https://realtor-realestate-2c62b6.netlify.app', // Development frontend
   ];
 
 app.use(
